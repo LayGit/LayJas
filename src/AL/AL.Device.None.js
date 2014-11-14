@@ -11,10 +11,18 @@ Lay.package("AL.Device", function(){
      */
     $N.locate = function(callback, cacheEnabled, forceUpdate){
         var success = function(p){
-                callback(0, {point:p}, "GPS定位正常");
+                callback({
+                    code:0,
+                    data:{point:p},
+                    message:"GPS定位正常"
+                });
             },
             error = function(err){
-                callback(err.code, {point:null}, err.msg);
+                callback({
+                    code:err.code,
+                    data:{point:null},
+                    message:err.msg
+                });
             };
         if (cacheEnabled)
         {
