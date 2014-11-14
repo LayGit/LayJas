@@ -17,22 +17,22 @@ Lay.package("LL.Location", function(){
                 //error(err);
                 var msg = "未知错误",
                     code = -1;
-                switch (error.code)
+                switch (err.code)
                 {
-                    case error.TIMEOUT:
+                    case err.TIMEOUT:
                         msg = "定位超时";
                         code = 102;
                         break;
-                    case error.PERMISSION_DENIED:
+                    case err.PERMISSION_DENIED:
                         msg = "用户未同意定位";
                         code = 103;
                         break;
-                    case error.POSITION_UNAVAILABLE:
+                    case err.POSITION_UNAVAILABLE:
                         msg = "无法获取位置";
                         code = 104;
                         break;
                 }
-                err({
+                error({
                     code:code,
                     msg:msg
                 });
