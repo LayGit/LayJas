@@ -79,12 +79,13 @@ Lay.package("AL.Core", function(){
      * 调用接口
      * @param inf       接口
      * @param param     参数
-     * @param success  成功回调
+     * @param success   成功回调
      * @param error     错误回调
+     * @param timeout   超时时间
      */
-    $B.request = function(inf, param, success, error){
+    $B.request = function(inf, param, success, error, timeout){
         asyncNS(function(dev){
-            dev.request(inf, param, success, error);
+            dev.request(inf, param, success, error, timeout);
         });
     };
 

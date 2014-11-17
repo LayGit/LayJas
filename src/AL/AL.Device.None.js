@@ -1,7 +1,8 @@
 Lay.package("AL.Device", function(){
     var $N = {},
         $Geo = Lay.using("LL.Location.Geo"),
-        $LocCache = Lay.using("LL.Location.Cache");
+        $LocCache = Lay.using("LL.Location.Cache"),
+        Ajax = Lay.using("LL.Net.Ajax")
 
     /**
      * Web定位
@@ -35,6 +36,24 @@ Lay.package("AL.Device", function(){
         {
             $Geo.locate(success, error);
         }
+    };
+
+    $N.request = function(inf, param, success, error, timeout){
+        timeout = timeout || 5000;
+        success = success || function(){};
+        error = error || function(){};
+        Ajax.request({
+            url: inf.url,
+            type: inf.type,
+            data: param,
+            dataType: 'json',
+            timeout: timeout,
+            success: function (result)
+            {
+                success(result.data, result.code, result.message);
+            },
+            error: error
+        });
     };
 
     this.None = $N;
